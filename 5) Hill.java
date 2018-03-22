@@ -1,40 +1,36 @@
 import java.util.Scanner;
 
 class Hill {
-	static char key[] = {'S', 'E', 'C', 'R', 'E', 'T', 'K', 'E', 'Y'};
+	static String key = "SECRETKEY";
 	static int[][] keyMatrix = new int[3][3];
+	static int[][] inputMatrix = new int[3][3];
 
-	static {
-		int k = 0;		
+	public static int[][] createMatrix(String input) {
+		int k = 0;
+		int[][] outputMatrix = new int[3][3];
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-				keyMatrix[i][j] = (int)key[k] - 65;
+				outputMatrix[i][j] = ((int)input.charAt(k) - 65);
 				k++;
 			}
 		}
+
+		return outputMatrix;
 	}
-
-	public static int[][] createMatrix(String input) {
-		int[][] inputMatrix = new int[3][3];
-
-		int k = 0;
-
+	
+	public static void printArray(int[][] input) {
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-				inputMatrix[i][j] = (int)input.charAt(k) - 65;
+				System.out.print(input[i][j] + " ");
 			}
+			System.out.println();
 		}
-
-		return inputMatrix;
 	}
 
-	public static String encrypt(String input) {
-		int[][] inputMatrix = createMatrix(input);
-		String output = "";
-
+	public static int[][] multiplyMatrix() {
 		int[][] outputMatrix = new int[3][3];
-
+		
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
 				outputMatrix[i][j] = 0;
@@ -46,9 +42,26 @@ class Hill {
 				for(int k = 0; k < 3; k++) {
 					outputMatrix[i][j] += keyMatrix[i][k] * inputMatrix[k][j];
 				}
-				System.out.println(outputMatrix[i][j]);
 			}
 		}
+		
+		return outputMatrix;					
+	}
+
+	public static String encrypt(String input) {
+		keyMatrix = createMatrix(key);
+		inputMatrix = createMatrix(input);
+
+		int[][] outputMatrix = multiplyMatrix();
+
+		String output = "";
+
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				output += (char)(outputMatrix[i][j] % 26 + 65);
+			}
+		}
+
 		return output;
 	}
 
@@ -59,16 +72,14 @@ class Hill {
 		System.out.print("Enter plaintext: ");
 		input = scan.nextLine();
 
-		if(input.length() < 9) {
-			while(input.length() < 9) {
-				input += "x";
-			}
+		while(input.length() < 9) {
+			input += "x";
 		}
 
 		input = input.toUpperCase();
 
 		String output = encrypt(input);
 
-		System.out.println(output);
+		System.out.println("Ciphertext: " + output);
 	}
 }
