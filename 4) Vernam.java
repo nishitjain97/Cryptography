@@ -6,12 +6,12 @@ class Vernam {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
+		System.out.print("Enter plaintext: ");
 		String input = scan.nextLine();
 
 		input = input.replaceAll(" ","");
 		input = input.toUpperCase();
 		input = input.substring(0,9);
-		System.out.println(input);
 
 		String output = "";
 

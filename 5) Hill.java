@@ -18,15 +18,6 @@ class Hill {
 
 		return outputMatrix;
 	}
-	
-	public static void printArray(int[][] input) {
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 3; j++) {
-				System.out.print(input[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
 
 	public static int[][] multiplyMatrix() {
 		int[][] outputMatrix = new int[3][3];

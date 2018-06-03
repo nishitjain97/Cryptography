@@ -18,9 +18,12 @@ class Caesar {
 			System.out.println("Invalid input");
 			return;
 		}
+
 		String input = args[0];
+
 		input = input.replaceAll(" ","");
 
-		System.out.println(encryptData(input));
+		System.out.println("Plaintext: " + input);
+		System.out.println("Ciphertext: " + encryptData(input));
 	}
 }

@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 class monoAlphabet {
 	static char[] keyArray = new char[26];
@@ -46,16 +47,14 @@ class monoAlphabet {
 
 	public static void main(String[] args) {
 		generateKey();
-	
-		if(args.length == 0) {
-			System.out.println("Invalid input");
-		}
 
-		String input = args[0];
+		Scanner scan = new Scanner(System.in);
+
+		System.out.print("Enter plaintext: ");
+		String input = scan.nextLine();
 		
-		System.out.println("Encrypting...");
-		System.out.println("Input: " + input);
+		System.out.println("Plaintext: " + input);
 		String output = encryptData(input);
-		System.out.println("Encrypted: " + output);
+		System.out.println("Ciphertext: " + output);
 	}
 }

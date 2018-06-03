@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class modCaesar {
 	public static String encryptData(String input, int key) {
 		String output = "";
@@ -14,15 +16,15 @@ class modCaesar {
 	}
 
 	public static void main(String[] args) {
-		if (args.length == 0) {
-			System.out.println("Invalid input");
-			return;
-		}
-		String input = args[0];
-		int key = Integer.parseInt(args[1]);
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("Enter plaintext: ");
+		String input = scan.nextLine();
 
-		input = input.replaceAll(" ","");
+		System.out.print("Enter key: ");
+		int key = Integer.parseInt(scan.nextLine());
 
-		System.out.println(encryptData(input,key));
+		System.out.println("Plaintext: " + input);
+		System.out.println("Ciphertext: " + encryptData(input, key));
 	}
 }
